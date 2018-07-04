@@ -1,0 +1,21 @@
+<div class="sidebar">
+    <button class="ui fluid primary button">
+        <i class="far fa-plus mr-5"></i>
+        Add log entry
+    </button>
+    <div class="ui vertical text menu">
+        <form [formGroup]="form">
+            <div class="header item">Filters</div>
+            <a class="item">
+                todo
+            </a>
+            <div class="header item">View mode</div>
+            <a class=" item">
+                <sui-select formControlName="selectedOption">
+                    <sui-select-option *ngFor="let option of options" [value]="option.label">
+                    </sui-select-option>
+                </sui-select>
+            </a>
+        </form>
+    </div>
+</div>
