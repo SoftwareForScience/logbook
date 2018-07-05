@@ -10,6 +10,8 @@ import {routes} from './app.routing';
 import {RouterModule} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {LogEntryDetailedViewComponent} from './log-entry-detailed-view/log-entry-detailed-view.component';
 
 @NgModule({
     declarations: [
@@ -17,12 +19,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         SidebarComponent,
         LogEntriesComponent,
         HomeComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        LogEntryDetailedViewComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxPaginationModule,
         RouterModule.forRoot(routes),
         SuiModule
     ],
