@@ -5,3 +5,7 @@
 .filter:hover {
     cursor: pointer;
 }
+
+.segment {
+    min-height: 400px;
+}
