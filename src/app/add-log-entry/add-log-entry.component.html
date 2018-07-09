@@ -1,0 +1,35 @@
+<div class="ui segment">
+  <h2 class="ui middle floated header">Add Log</h2>
+  <div class="ui clearing divider"></div>
+  <form class="ui form">
+      <div class="field">
+        <label>Source (*)</label>
+        <input type="text" name="source" placeholder="Source">
+      </div>
+      <div class="field">
+        <label>Class (*)</label>
+        <input type="text" name="class" placeholder="Class">
+      </div>
+      <div class="field">
+        <label>Type (*)</label>
+        <div class="ui segment">
+            <sui-multi-select class="selection"
+                              [(ngModel)]="selectedOptions"
+                              [options]="options"
+                              labelField="name"
+                              [isSearchable]="searchable"
+                              [isDisabled]="disabled"
+                              [hasLabels]="!hideLabels"
+                              #multiSelect>
+                <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                                   [value]="option">
+                </sui-select-option>
+            </sui-multi-select>
+        </div>
+      </div>
+      <div class="field">
+        <button class="ui button" type="submit">Submit</button>
+      </div>
+      
+    </form>
+</div>

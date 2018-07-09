@@ -10,6 +10,7 @@ import {routes} from './app.routing';
 import {RouterModule} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AddLogEntryComponent } from './add-log-entry/add-log-entry.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         SidebarComponent,
         LogEntriesComponent,
         HomeComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AddLogEntryComponent
     ],
     imports: [
         BrowserModule,
