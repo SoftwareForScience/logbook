@@ -1,1 +1,63 @@
-Cyril
+<ng-template let-context let-modal="modal" #modalTemplate>
+    <div class="header">Log Entry Details</div>
+    <div class="content">
+        <table>
+            <tr class="border_bottom">
+                <td class="title">Created</td>
+                <td>2018-08-22 13:14:40</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title"d>Subsystem</td>
+                <td>Run Coordination</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Class</td>
+                <td>PROCESS</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Type</td>
+                <td>GENERAL</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Author</td>
+                <td>Marco</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Run</td>
+                <td>284684</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Title</td>
+                <td>EOR report b839</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Log entry text</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid assumenda est illo itaque molestiae mollitia obcaecati perspiciatis rerum velit vitae.</td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Follow ups</td>
+                <td></td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Interruption duration</td>
+                <td></td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Intervention type</td>
+                <td></td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Quality flag</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="actions">
+        <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+        <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+    </div>
+</ng-template>
+
+<div>
+    <button (click)='open()'>Details</button>
+</div>
