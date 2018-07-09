@@ -1,92 +1,94 @@
-<table class="ui very compact unstackable celled table">
-    <thead>
-        <tr>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Created
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Subsystem
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Class
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Type
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Run
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Author
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Title
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Log entry
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Followups
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Files
-            </th>
-            <th style="text-align: center;">
-                <i class="filter icon"></i><br/>
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let logEntry of logEntries | paginate: { itemsPerPage: 5, currentPage: p }">
-            <td>
-                {{logEntry.createdAt | date}}
-            </td>
-            <td>
-                {{logEntry.subsystem | titlecase}}
-            </td>
-            <td>
-                {{logEntry.class | titlecase}}
-            </td>
-            <td>
-                {{logEntry.type | titlecase}}
-            </td>
-            <td>
-                {{logEntry.run}}
-            </td>
-            <td>
-                {{logEntry.author}}
-            </td>
-            <td>
-                {{logEntry.title}}
-            </td>
-            <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'COMPACT'}">
-                {{logEntry.text}}
-            </td>
-            <td>
-                {{logEntry.followUps}}
-            </td>
-            <td>
-                <ul>
-                    <li *ngFor="let file of logEntry.files">
-                        {{file.name}}
-                    </li>
-                </ul>
-            </td>
-            <td>
+<div class="ui segment" [ngClass]="{'loading': loading}">
+    <table class="ui very compact stackable celled table">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Created
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Subsystem
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Class
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Type
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Run
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Author
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Title
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Log entry
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Followups
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Files
+                </th>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let logEntry of logEntries | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>
+                    {{logEntry.createdAt | date}}
+                </td>
+                <td>
+                    {{logEntry.subsystem | titlecase}}
+                </td>
+                <td>
+                    {{logEntry.class | titlecase}}
+                </td>
+                <td>
+                    {{logEntry.type | titlecase}}
+                </td>
+                <td>
+                    {{logEntry.run}}
+                </td>
+                <td>
+                    {{logEntry.author}}
+                </td>
+                <td>
+                    {{logEntry.title}}
+                </td>
+                <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'Compact'}">
+                    {{logEntry.text}}
+                </td>
+                <td>
+                    {{logEntry.followUps}}
+                </td>
+                <td>
+                    <ul>
+                        <li *ngFor="let file of logEntry.files">
+                            {{file.name}}
+                        </li>
+                    </ul>
+                </td>
+                <td>
 
-            </td>
-        </tr>
-    </tbody>
-</table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

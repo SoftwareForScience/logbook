@@ -10,8 +10,12 @@ import {routes} from './app.routing';
 import {RouterModule} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AddLogEntryComponent } from './add-log-entry/add-log-entry.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {LogEntryDetailedViewComponent} from './log-entry-detailed-view/log-entry-detailed-view.component';
+import {DataService} from './shared/services/data/data.service';
+import {LogEntriesService} from './shared/services/log-entries/log-entries.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -20,6 +24,7 @@ import {LogEntryDetailedViewComponent} from './log-entry-detailed-view/log-entry
         LogEntriesComponent,
         HomeComponent,
         PageNotFoundComponent,
+        AddLogEntryComponent,
         LogEntryDetailedViewComponent
     ],
     imports: [
@@ -27,10 +32,14 @@ import {LogEntryDetailedViewComponent} from './log-entry-detailed-view/log-entry
         FormsModule,
         ReactiveFormsModule,
         NgxPaginationModule,
+        HttpClientModule,
         RouterModule.forRoot(routes),
         SuiModule
     ],
-    providers: [],
+    providers: [
+        DataService,
+        LogEntriesService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
