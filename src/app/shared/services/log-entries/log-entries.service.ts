@@ -23,6 +23,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url)
                 .subscribe((res) => {
@@ -31,6 +32,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -48,6 +50,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/single/entry/' + id)
                 .subscribe((res) => {
@@ -56,6 +59,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -73,6 +77,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/single/entry/' + id, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -83,6 +88,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -100,6 +106,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/all/entries', {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -110,6 +117,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -126,6 +134,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/post/entry/data', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -136,6 +145,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -152,6 +162,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/upload/' + id, APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -162,6 +173,7 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 
     /**
@@ -178,6 +190,7 @@ export class LogEntriesService {
             }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
         });
 
+        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/user/login/info', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -188,5 +201,6 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
+         */
     }
 }
