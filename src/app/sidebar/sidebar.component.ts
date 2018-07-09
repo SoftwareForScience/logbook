@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DataService} from '../shared/services/data/data.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -11,16 +12,15 @@ export class SidebarComponent implements OnInit {
     form: FormGroup;
     options = [
         {
-            'label': 'Extended',
-            'value': 'EXTENDED'
+            'label': 'Extended'
         },
         {
-            'label': 'Compact',
-            'value': 'COMPACT'
+            'label': 'Compact'
         }
     ];
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder,
+                private dataService: DataService) {
         this.form = fb.group({
             selectedOption: [this.options[0].label, Validators.required]
         });
@@ -29,4 +29,7 @@ export class SidebarComponent implements OnInit {
     ngOnInit() {
     }
 
+    emitViewMode() {
+        this.dataService.setViewMode(this.form.get('selectedOption').value);
+    }
 }
