@@ -8,4 +8,5 @@
 
 .segment {
     min-height: 400px;
+    overflow-x: auto;
 }

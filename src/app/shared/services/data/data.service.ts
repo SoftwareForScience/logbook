@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class DataService {
@@ -7,9 +7,5 @@ export class DataService {
 
     setViewMode(mode: string) {
         this.subject.next({mode: mode});
-    }
-
-    getViewMode(): Observable<any> {
-        return this.subject.getValue();
     }
 }
