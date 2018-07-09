@@ -3,7 +3,6 @@ import {DataService} from '../shared/services/data/data.service';
 import {LogEntriesService} from '../shared/services/log-entries/log-entries.service';
 import {LogEntry} from '../shared/services/log-entries/get-all-log-entries-return';
 import {ModalTemplate, SuiModalService, TemplateModalConfig} from 'ng2-semantic-ui';
-import {IContext} from '../log-entry-detailed-view/log-entry-detailed-view.component';
 
 @Component({
     selector: 'app-log-entries',
@@ -91,4 +90,8 @@ export class LogEntriesComponent implements OnInit {
             }
         }
     }
+}
+
+interface IContext {
+    data: string;
 }
