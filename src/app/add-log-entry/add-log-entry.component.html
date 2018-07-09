@@ -11,25 +11,44 @@
         <input type="text" name="class" placeholder="Class">
       </div>
       <div class="field">
-        <label>Type (*)</label>
-        <div class="ui segment">
-            <sui-multi-select class="selection"
-                              [(ngModel)]="selectedOptions"
-                              [options]="options"
-                              labelField="name"
-                              [isSearchable]="searchable"
-                              [isDisabled]="disabled"
-                              [hasLabels]="!hideLabels"
-                              #multiSelect>
-                <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
-                                   [value]="option">
-                </sui-select-option>
-            </sui-multi-select>
+          <label>Type (*)</label>
+          <sui-select class="selection"
+          [(ngModel)]="selectedOptions_type"
+          name="oneSelect"
+          [options]="options_type"
+          labelField="label"
+          #select>
+            <sui-select-option *ngFor="let option of select.filteredOptions"
+                              [value]="option">
+            </sui-select-option>
+          </sui-select>
         </div>
+      <div class="field">
+        <label>Subsystems (*)</label>
+        <sui-multi-select class="selection"
+                          [(ngModel)]="selectedOptions_subs"
+                          name="multiSelect"
+                          [options]="options_subs"
+                          labelField="label"
+                          #multiSelect>
+            <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                               [value]="option">
+            </sui-select-option>
+        </sui-multi-select>
+      </div>
+      <div class="field">
+          <label>Title (*)</label>
+          <input type="text" name="title" placeholder="Title">
+      </div>
+      <div class="field">
+          <label>Log Entry (*)</label>
+          <textarea rows="4" type="text" name="title" placeholder="Title"></textarea>
       </div>
       <div class="field">
         <button class="ui button" type="submit">Submit</button>
+        <button class="ui button" type="cancel">Cancel</button>
       </div>
-      
+
     </form>
 </div>
+
