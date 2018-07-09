@@ -1,7 +1,11 @@
 <div class="ui segment" [ngClass]="{'loading': loading}">
-    <table class="ui very compact stackable celled table">
+    <table class="ui very compact celled table">
         <thead>
             <tr>
+                <th style="text-align: center;">
+                    <i class="filter icon"></i><br/>
+                    Id
+                </th>
                 <th style="text-align: center;">
                     <i class="filter icon"></i><br/>
                     Created
@@ -39,19 +43,17 @@
                     Followups
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
-                    Files
-                </th>
-                <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
                     Actions
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let logEntry of logEntries | paginate: { itemsPerPage: 5, currentPage: p }">
+            <tr *ngFor="let logEntry of logEntries | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                    {{logEntry.createdAt | date}}
+                    {{logEntry.run_id}}
+                </td>
+                <td>
+                    {{logEntry.created | date}}
                 </td>
                 <td>
                     {{logEntry.subsystem | titlecase}}
@@ -68,27 +70,129 @@
                 <td>
                     {{logEntry.author}}
                 </td>
-                <td>
+                <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'Compact'}">
                     {{logEntry.title}}
                 </td>
                 <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'Compact'}">
-                    {{logEntry.text}}
+                    {{logEntry.log_entry_text}}
                 </td>
                 <td>
-                    {{logEntry.followUps}}
+                    {{logEntry.follow_ups}}
                 </td>
-                <td>
-                    <ul>
-                        <li *ngFor="let file of logEntry.files">
-                            {{file.name}}
-                        </li>
-                    </ul>
-                </td>
-                <td>
-
+                <td style="text-align: center;">
+                    <button suiPopup (click)="viewLogEntry(logEntry)"
+                            [popupPlacement]="'bottom'" popupText="View log entry" [popupDelay]="250" class="ui icon button">
+                        <i class="eye icon"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+    <div class="header" style="text-align: center;">
+        <button [disabled]="isPreviousLogEntryButtonDisabled" class="ui medium basic icon button" style="float: left; border: 0;"
+                (click)="previousLogEntry()">
+            <i class="chevron left icon"></i>
+        </button>
+        Log Entry Details
+        <button [disabled]="isNextLogEntryButtonDisabled" class="ui medium basic icon button" style="float: right; border: 0;"
+                (click)="nextLogEntry()">
+            <i class="chevron right icon"></i>
+        </button>
+    </div>
+    <div class="content">
+        <table>
+            <tr class="border_bottom">
+                <td class="title">Id</td>
+                <td>
+                    {{selectedLogEntry.run_id}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Created</td>
+                <td>
+                    {{selectedLogEntry.created | date}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title"d>Subsystem</td>
+                <td>
+                    {{selectedLogEntry.subsystem}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Class</td>
+                <td>
+                    {{selectedLogEntry.class}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Type</td>
+                <td>
+                    {{selectedLogEntry.type}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Author</td>
+                <td>
+                    {{selectedLogEntry.author}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Run</td>
+                <td>
+                    {{selectedLogEntry.run}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Title</td>
+                <td>
+                    {{selectedLogEntry.title}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Log entry text</td>
+                <td>
+                    {{selectedLogEntry.log_entry_text}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Follow ups</td>
+                <td>
+                    {{selectedLogEntry.follow_ups}}
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Interruption duration</td>
+                <td>
+
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Intervention type</td>
+                <td>
+
+                </td>
+            </tr>
+            <tr class="border_bottom">
+                <td class="title">Quality flag</td>
+                <td>
+                    {{selectedLogEntry.quality_flag}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="actions">
+        <button class="ui button" (click)="modal.approve('approved')">
+            <i class="plus icon mr-5"></i>
+            Create a followup
+        </button>
+        <button class="ui primary button" (click)="modal.approve('approved')" autofocus>
+            <i class="times icon mr-5"></i>
+            Close
+        </button>
+    </div>
+</ng-template>

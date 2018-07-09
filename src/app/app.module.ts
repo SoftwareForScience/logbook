@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddLogEntryComponent } from './add-log-entry/add-log-entry.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {LogEntryDetailedViewComponent} from './log-entry-detailed-view/log-entry-detailed-view.component';
 import {DataService} from './shared/services/data/data.service';
 import {LogEntriesService} from './shared/services/log-entries/log-entries.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -24,8 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
         LogEntriesComponent,
         HomeComponent,
         PageNotFoundComponent,
-        AddLogEntryComponent,
-        LogEntryDetailedViewComponent
+        AddLogEntryComponent
     ],
     imports: [
         BrowserModule,

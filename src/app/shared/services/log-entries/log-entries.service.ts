@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
-import logEntries from '../../mockup-data/log-entries';
+import {LogEntry} from './get-all-log-entries-return';
 
 @Injectable()
 export class LogEntriesService {
     constructor(public http: HttpClient) {
     }
-
-    private DEBUG_FAKE_WAIT_TIME_MS = 500;
 
     /**
      * Retrieves a debug token.
@@ -16,14 +14,6 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     loginDebug(): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        return new Promise((resolve, reject) => {
-            setTimeout(function() {
-                resolve('mockup-token');
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url)
                 .subscribe((res) => {
@@ -32,7 +22,6 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -41,25 +30,15 @@ export class LogEntriesService {
      * @param id
      * @returns {Promise<>}
      */
-    getLogEntry(id: number): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        const logEntriesMockupData = logEntries;
-        return new Promise((resolve, reject) => {
-            setTimeout(function() {
-                resolve(logEntriesMockupData[0]);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
+    getLogEntry(id: number): Promise<LogEntry[]> {
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/single/entry/' + id)
-                .subscribe((res) => {
+                .subscribe((res: LogEntry[]) => {
                     resolve(res);
                 }, err => {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -70,14 +49,6 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     getLogEntryFile(id: number): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        return new Promise((resolve, reject) => {
-            setTimeout(function () {
-                resolve(null);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/single/entry/' + id, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -88,7 +59,6 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -97,27 +67,17 @@ export class LogEntriesService {
      *
      * @returns {Promise<any>}
      */
-    getAllLogEntries(): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        const logEntriesMockupData = logEntries;
-        return new Promise((resolve, reject) => {
-            setTimeout(function () {
-                resolve(logEntriesMockupData);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
+    getAllLogEntries(): Promise<LogEntry[]> {
         return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/all/entries', {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
             })
-                .subscribe((res) => {
+                .subscribe((res: LogEntry[]) => {
                     resolve(res);
                 }, err => {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -126,15 +86,6 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     crateLogEntry(APIParameter): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        const logEntriesMockupData = logEntries;
-        return new Promise((resolve, reject) => {
-            setTimeout(function () {
-                resolve(logEntriesMockupData[0]);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/post/entry/data', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -145,7 +96,6 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -154,15 +104,6 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     uploadFileToLogEntry(id: number, APIParameter): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        const logEntriesMockupData = logEntries;
-        return new Promise((resolve, reject) => {
-            setTimeout(function () {
-                resolve(logEntriesMockupData[0]);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/upload/' + id, APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -173,7 +114,6 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
-         */
     }
 
     /**
@@ -182,15 +122,6 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     login(APIParameter): Promise<any> {
-        // todo remove (temporary until we can't access the API
-        const logEntriesMockupData = logEntries;
-        return new Promise((resolve, reject) => {
-            setTimeout(function () {
-                resolve(logEntriesMockupData[0]);
-            }.bind(this), this.DEBUG_FAKE_WAIT_TIME_MS);
-        });
-
-        /**
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/user/login/info', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -201,6 +132,5 @@ export class LogEntriesService {
                     reject(err);
                 });
         });
-         */
     }
 }

@@ -1,7 +1,3 @@
-.cell-full { max-width:1px; width:100%; }
-.cell-ellipsis { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-.cell-noWrap { white-space:nowrap; }
-
 .filter:hover {
     cursor: pointer;
 }
@@ -9,4 +5,10 @@
 .segment {
     min-height: 400px;
     overflow-x: auto;
+}
+
+@media screen and (min-width: 767px) {
+    .cell-full { max-width:1px; width:100%; }
+    .cell-ellipsis { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+    .cell-noWrap { white-space:nowrap; }
 }

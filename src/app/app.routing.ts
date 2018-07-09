@@ -26,10 +26,6 @@ export const routes: Routes = [
         component: AddLogEntryComponent
     },
     {
-        path: 'cyril',
-        component: LogEntryDetailedViewComponent
-    },
-    {
         path: '**',
         component: PageNotFoundComponent
     }
