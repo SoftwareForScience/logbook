@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class DataService {
-    public subject = new BehaviorSubject<any>('Compact');
+    public subject = new BehaviorSubject<any>('Extended');
 
     setViewMode(mode: string) {
         this.subject.next({mode: mode});

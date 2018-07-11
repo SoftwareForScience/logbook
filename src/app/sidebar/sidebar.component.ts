@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.emitViewMode();
     }
 
     emitViewMode() {

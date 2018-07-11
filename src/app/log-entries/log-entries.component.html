@@ -3,43 +3,43 @@
         <thead>
             <tr>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Id', 'id')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('id')}"></i><br/>
                     Id
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Created', 'created')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('created')}"></i><br/>
                     Created
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
-                    Subsystem
+                    <i (click)="filterLogEntries('Subsystem(s)', 'subsystem')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('subsystem')}"></i><br/>
+                    Subsystem(s)
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Class', 'class')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('class')}"></i><br/>
                     Class
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Type', 'type')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('type')}"></i><br/>
                     Type
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Run', 'run_id')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('run_id')}"></i><br/>
                     Run
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Author', 'author')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('author')}"></i><br/>
                     Author
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Title', 'title')" class="filter icon"></i><br/>
                     Title
                 </th>
-                <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                <th *ngIf="mode === 'Extended'" style="text-align: center;">
+                    <i (click)="filterLogEntries('Log entry', 'log_entry_text')" class="filter icon"></i><br/>
                     Log entry
                 </th>
                 <th style="text-align: center;">
-                    <i class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Followups', 'followups')" class="filter icon"></i><br/>
                     Followups
                 </th>
                 <th style="text-align: center;">
@@ -70,10 +70,10 @@
                 <td>
                     {{logEntry.author}}
                 </td>
-                <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'Compact'}">
+                <td>
                     {{logEntry.title}}
                 </td>
-                <td [ngClass]="{'table-cell cell-full cell-ellipsis': mode === 'Compact'}">
+                <td *ngIf="mode === 'Extended'">
                     {{logEntry.log_entry_text}}
                 </td>
                 <td>
@@ -91,7 +91,7 @@
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
 
-<ng-template let-context let-modal="modal" #modalTemplate>
+<ng-template let-context let-modal="modal" #detailModalTemplate>
     <div class="header" style="text-align: center;">
         <button [disabled]="isPreviousLogEntryButtonDisabled" class="ui medium basic icon button" style="float: left; border: 0;"
                 (click)="previousLogEntry()">
@@ -193,6 +193,81 @@
         <button class="ui primary button" (click)="modal.approve('approved')" autofocus>
             <i class="times icon mr-5"></i>
             Close
+        </button>
+    </div>
+</ng-template>
+
+<ng-template let-context let-modal="modal" #filterModalTemplate>
+    <div class="header">Filter for field {{selectedFilterName}}</div>
+    <div class="content">
+        <form class="ui form">
+            <!--
+                Fields list
+                ['Id', 'Created', 'Subsystem', 'Class', 'Type', 'Author', 'Run', 'Title', 'Log entry', 'Followups']
+            -->
+
+            <!-- String field -->
+            <div *ngIf="['Class', 'Type', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(selectedFilterName) >= 0"
+                 class="field">
+                <label>Field must include</label>
+                <input name="queryInput" [(ngModel)]="filterQuery" placeholder="Query">
+            </div>
+
+            <!-- Subsystem field -->
+            <div *ngIf="['Subsystem(s)'].indexOf(selectedFilterName) >= 0" class="field">
+                <label>Subsystem(s)</label>
+                <sui-multi-select class="selection"
+                                  name="subsystemsSelect"
+                                  [(ngModel)]="filterSubsystems"
+                                  [options]="subsystemOptions"
+                                  labelField="label"
+                                  placeholder="Search..."
+                                  [isSearchable]="true"
+                                  #multiSelect>
+                    <sui-select-option *ngFor="let option of multiSelect.filteredOptions"
+                                       [value]="option">
+                    </sui-select-option>
+                </sui-multi-select>
+            </div>
+
+            <!-- Integer field -->
+            <div *ngIf="['Id'].indexOf(selectedFilterName) >= 0"
+                 class="field">
+                <label>Minimum value</label>
+                <input name="minValueInput" [(ngModel)]="filterMinValue" placeholder="Minimum">
+            </div>
+
+            <div *ngIf="['Id'].indexOf(selectedFilterName) >= 0"
+                 class="field">
+                <label>Maximum value</label>
+                <input name="maxValueInput" [(ngModel)]="filterMaxValue" placeholder="Maximum">
+            </div>
+
+            <!-- Date field -->
+            <div *ngIf="['Created'].indexOf(selectedFilterName) >= 0" class="field">
+                <label>Minimum Date</label>
+                <div class="ui left icon input">
+                    <i class="calendar icon"></i>
+                    <input name="minDateInput" suiDatepicker [(ngModel)]="filterMinDateValue" [pickerUseNativeOnMobile]="true">
+                </div>
+            </div>
+            <div *ngIf="['Created'].indexOf(selectedFilterName) >= 0" class="field">
+                <label>Maximum Date</label>
+                <div class="ui left icon input">
+                    <i class="calendar icon"></i>
+                    <input name="maxDateInput" suiDatepicker [(ngModel)]="filterMaxDateValue" [pickerUseNativeOnMobile]="true">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <button class="ui red button" (click)="removeFilter(); modal.approve('approved')">
+            <i class="cancel icon"></i>
+            Remove filter
+        </button>
+        <button class="ui green button" (click)="applyFilter(); modal.approve('approved')" autofocus>
+            <i class="check icon"></i>
+            Apply filter
         </button>
     </div>
 </ng-template>

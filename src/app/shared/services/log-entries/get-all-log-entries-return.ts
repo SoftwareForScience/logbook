@@ -1,6 +1,6 @@
 export interface LogEntry {
     run_id: number;
-    created?: Date;
+    created?: string;
     subsystem: string;
     class: string;
     type: string;

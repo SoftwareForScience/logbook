@@ -11,15 +11,50 @@ import {ModalTemplate, SuiModalService, TemplateModalConfig} from 'ng2-semantic-
 })
 export class LogEntriesComponent implements OnInit {
 
-    @ViewChild('modalTemplate')
-    public modalTemplate: ModalTemplate<IContext, string, string>;
+    @ViewChild('detailModalTemplate')
+    public detailModalTemplate: ModalTemplate<IContext, string, string>;
+    @ViewChild('filterModalTemplate')
+    public filterModalTemplate: ModalTemplate<IContext, string, string>;
     p = 1;
     logEntries: LogEntry[] = [];
     selectedLogEntry: LogEntry;
+    selectedFilterName: string;
+    selectedFilterField: string;
+    appliedFilters = [];
     isPreviousLogEntryButtonDisabled = false;
     isNextLogEntryButtonDisabled = false;
-    mode = 'Compact';
+    mode = 'Extended';
     loading = true;
+
+    filterQuery = '';
+    filterMinValue;
+    filterMaxValue;
+    filterMinDateValue;
+    filterMaxDateValue;
+    filterSubsystems;
+
+    subsystemOptions = [
+        {
+            'label': 'CTP',
+            'id': 1
+        },
+        {
+            'label': 'DCS',
+            'id': 2
+        },
+        {
+            'label': 'ECS',
+            'id': 3
+        },
+        {
+            'label': 'HLT',
+            'id': 4
+        },
+        {
+            'label': 'TRG',
+            'id': 5
+        }
+    ];
 
     constructor(private dataService: DataService,
                 public modalService: SuiModalService,
@@ -40,7 +75,7 @@ export class LogEntriesComponent implements OnInit {
         this.selectedLogEntry = logEntry;
         this.updatePopupButtonsState();
 
-        const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+        const config = new TemplateModalConfig<IContext, string, string>(this.detailModalTemplate);
         config.transitionDuration = 250;
 
         this.modalService
@@ -89,6 +124,79 @@ export class LogEntriesComponent implements OnInit {
                 break;
             }
         }
+    }
+
+    public filterLogEntries(filterName, filterField) {
+        this.selectedFilterName = filterName;
+        this.selectedFilterField = filterField;
+
+        const config = new TemplateModalConfig<IContext, string, string>(this.filterModalTemplate);
+        config.transitionDuration = 0;
+
+        this.modalService
+            .open(config);
+    }
+
+    public applyFilter() {
+        this.removeFilter();
+
+        let data;
+
+        if (['Id'].indexOf(this.selectedFilterName) >= 0) {
+            data = {
+                'minimum': this.filterMinValue,
+                'maximum': this.filterMaxValue
+            };
+        } else if (['Class', 'Type', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(this.selectedFilterName) >= 0) {
+            data = {
+                'query': this.filterQuery
+            };
+        } else if (['Subsystem(s)'].indexOf(this.selectedFilterName) >= 0) {
+            data = {
+                'subsystems': this.filterSubsystems
+            };
+        } else {
+            data = {
+                'minDate': this.filterMinDateValue,
+                'maxDate': this.filterMaxDateValue
+            };
+        }
+
+        const newFilter = {
+            'field': this.selectedFilterField,
+            'data': data
+        };
+
+        this.appliedFilters.push(newFilter);
+        this.applyAllFilters();
+
+        console.log(this.appliedFilters);
+    }
+
+    public removeFilter() {
+        const newAppliedFilters = this.appliedFilters;
+        for (let i = 0; i < this.appliedFilters.length; i++) {
+            if (this.appliedFilters[i].field === this.selectedFilterField) {
+                newAppliedFilters.splice(i, 1);
+                break;
+            }
+        }
+
+        this.appliedFilters = newAppliedFilters;
+    }
+
+    public applyAllFilters() {
+        // todo
+    }
+
+    public isFilterApplied(filterField): boolean {
+        for (let i = 0; i < this.appliedFilters.length; i++) {
+            if (this.appliedFilters[i].field === filterField) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
