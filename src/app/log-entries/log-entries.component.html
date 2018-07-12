@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th style="text-align: center;">
-                    <i (click)="filterLogEntries('Id', 'id')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('id')}"></i><br/>
+                    <i (click)="filterLogEntries('Id', 'run_id')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('run_id')}"></i><br/>
                     Id
                 </th>
                 <th style="text-align: center;">
@@ -23,7 +23,7 @@
                     Type
                 </th>
                 <th style="text-align: center;">
-                    <i (click)="filterLogEntries('Run', 'run_id')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('run_id')}"></i><br/>
+                    <i (click)="filterLogEntries('Run', 'run')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('run')}"></i><br/>
                     Run
                 </th>
                 <th style="text-align: center;">
@@ -118,7 +118,7 @@
                 </td>
             </tr>
             <tr class="border_bottom">
-                <td class="title"d>Subsystem</td>
+                <td class="title">Subsystem</td>
                 <td>
                     {{selectedLogEntry.subsystem}}
                 </td>

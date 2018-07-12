@@ -33,7 +33,7 @@ export class LogEntriesComponent implements OnInit {
     filterMaxValue;
     filterMinDateValue;
     filterMaxDateValue;
-    filterTypes;
+    filterTypes = [];
     filterSubsystems;
 
     subsystemOptions = [
@@ -153,7 +153,8 @@ export class LogEntriesComponent implements OnInit {
             if (this.filteredLogEntries[i - 1].run_id === this.selectedLogEntry.run_id) {
                 if (i === 1) {
                     this.isPreviousLogEntryButtonDisabled = true;
-                } else if (i === this.filteredLogEntries.length) {
+                }
+                if (i === this.filteredLogEntries.length) {
                     this.isNextLogEntryButtonDisabled = true;
                 }
                 break;
@@ -167,6 +168,45 @@ export class LogEntriesComponent implements OnInit {
 
         const config = new TemplateModalConfig<IContext, string, string>(this.filterModalTemplate);
         config.transitionDuration = 0;
+
+        let existingFilterData;
+
+        for (let i = 0; i < this.appliedFilters.length; i++) {
+            if (this.appliedFilters[i].field === filterField) {
+                existingFilterData = this.appliedFilters[i].data;
+                break;
+            }
+        }
+
+        if (existingFilterData) {
+            if (['Id'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterMinValue = existingFilterData.minimum;
+                this.filterMaxValue = existingFilterData.maximum;
+            } else if (['Class', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterQuery = existingFilterData.query;
+            } else if (['Subsystem(s)'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterSubsystems = existingFilterData.subsystems;
+            } else if (['Type'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterTypes = existingFilterData.types;
+            } else {
+                this.filterMinDateValue = existingFilterData.minDate;
+                this.filterMaxDateValue = existingFilterData.maxDate;
+            }
+        } else {
+            if (['Id'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterMinValue = null;
+                this.filterMaxValue = null;
+            } else if (['Class', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterQuery = null;
+            } else if (['Subsystem(s)'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterSubsystems = [];
+            } else if (['Type'].indexOf(this.selectedFilterName) >= 0) {
+                this.filterTypes = [];
+            } else {
+                this.filterMinDateValue = null;
+                this.filterMaxDateValue = null;
+            }
+        }
 
         this.modalService
             .open(config);
@@ -257,8 +297,10 @@ export class LogEntriesComponent implements OnInit {
                 for (let j = 0; j < filteredLogEntries.length; j++) {
                     const currentLogEntry = filteredLogEntries[j];
 
-                    if (currentLogEntry[currentFilter.field].toLowerCase().includes(currentFilter.data.query.toLowerCase())) {
-                        newFilteredLogEntries.push(currentLogEntry);
+                    if (currentLogEntry[currentFilter.field]) {
+                        if (currentLogEntry[currentFilter.field].toString().toLowerCase().includes(currentFilter.data.query.toLowerCase())) {
+                            newFilteredLogEntries.push(currentLogEntry);
+                        }
                     }
                 }
             } else if (['Type'].indexOf(currentFilter.filterName) >= 0) {
@@ -298,7 +340,32 @@ export class LogEntriesComponent implements OnInit {
                     }
                 }
             } else {
-                // todo date
+                const minDate = this.filterMinDateValue ? new Date(this.filterMinDateValue) : null;
+                const maxDate = this.filterMaxDateValue ? new Date(this.filterMaxDateValue) : null;
+
+                for (let j = 0; j < filteredLogEntries.length; j++) {
+                    const currentLogEntry = filteredLogEntries[j];
+                    const currentLogEntryDate = new Date(currentLogEntry.created);
+
+                    if (minDate) {
+                        if (maxDate) {
+                            if (currentLogEntryDate <= maxDate &&
+                                currentLogEntryDate >= minDate) {
+                                newFilteredLogEntries.push(currentLogEntry);
+                            }
+                        } else {
+                            if (currentLogEntryDate >= minDate) {
+                                newFilteredLogEntries.push(currentLogEntry);
+                            }
+                        }
+                    } else if (maxDate) {
+                        if (currentLogEntryDate <= maxDate) {
+                            newFilteredLogEntries.push(currentLogEntry);
+                        }
+                    } else {
+                        newFilteredLogEntries.push(currentLogEntry);
+                    }
+                }
             }
 
             filteredLogEntries = newFilteredLogEntries;
