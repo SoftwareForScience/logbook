@@ -10,10 +10,15 @@ The goal of this project was to realize a remake of the current ALICE logbook ap
 * [ngx-pagination](https://github.com/michaelbromley/ngx-pagination)
 * [compodoc](https://github.com/compodoc/compodoc)
 
+## Prerequisites
+
+* [Node.js](https://nodejs.org/en/download/)
+* [Angular CLI](https://cli.angular.io/)
+
 ## Developpment
 
 1. Clone the repo
-2. run the command `npm install`
+2. Run the command `npm install`
 3. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Deployment
