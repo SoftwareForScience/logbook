@@ -3,6 +3,13 @@
         <div class="ui segment">
             <h2 class="ui middle floated header">Add log entry</h2>
             <div class="ui clearing divider"></div>
+            <div *ngIf="showTechnicalError" class="ui error message">
+                <div class="header">
+                    <i class="exclamation triangle icon"></i>
+                    A technical error occured
+                </div>
+                <p>Please try again later</p>
+            </div>
             <form [formGroup]="form" class="ui form" (submit)="submitForm()">
                 <div class="field" [ngClass]="{'error': sendAttempt && !form.get('date').valid}">
                     <label>Date *</label>

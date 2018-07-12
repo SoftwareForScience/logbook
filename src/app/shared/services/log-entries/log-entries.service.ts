@@ -74,6 +74,7 @@ export class LogEntriesService {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
             })
                 .subscribe((res: LogEntry[]) => {
+                    res.reverse();
                     resolve(res);
                 }, err => {
                     reject(err);
@@ -87,6 +88,7 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     crateLogEntry(APIParameter): Promise<any> {
+        console.log(APIParameter);
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/post/entry/data', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
