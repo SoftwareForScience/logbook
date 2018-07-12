@@ -1,0 +1,680 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>logbook documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">logbook documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">logbook documentation</a>
+        </li>
+
+        <li class="divider"></li>
+
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#xs-modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="xs-modules-links"
+                >
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-components-links-module-AppModule-722194338c884559b606f271a37f5805"
+                                    >
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-components-links-module-AppModule-722194338c884559b606f271a37f5805"
+                                    >
+                                        <li class="link">
+                                            <a href="components/AddLogEntryComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AddLogEntryComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/HomeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">HomeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/LogEntriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">LogEntriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/PageNotFoundComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">PageNotFoundComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/SidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#xs-injectables-links-module-AppModule-722194338c884559b606f271a37f5805"
+                                    >
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="xs-injectables-links-module-AppModule-722194338c884559b606f271a37f5805"
+                                    >
+                                        <li class="link">
+                                            <a href="injectables/DataService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>DataService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/LogEntriesService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>LogEntriesService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#xs-injectables-links"
+                        >
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="xs-injectables-links"
+                        >
+                            <li class="link">
+                                <a href="injectables/DataService.html" data-type="entity-link">DataService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/LogEntriesService.html" data-type="entity-link">LogEntriesService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-interfaces-links"
+                >
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-interfaces-links"
+                >
+                    <li class="link">
+                        <a href="interfaces/IContext.html" data-type="entity-link">IContext</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/LogEntry.html" data-type="entity-link">LogEntry</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#xs-miscellaneous-links"
+                >
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="xs-miscellaneous-links"
+                >
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+            <li class="chapter">
+                <a data-type="chapter-link" href="routes.html"><span class="fa fa-fw fa-code-fork"></span>Routes</a>
+            </li>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+        <li class="divider"></li>
+        <li class="copyright">
+                Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                            <img data-src="images/compodoc-vectorise.svg" class="img-responsive" data-type="compodoc-logo">
+                </a>
+        </li>
+
+    </ul>
+
+</nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+
+    <ul class="list">
+
+        <li class="title">
+            <a href="index.html" data-type="index-link">logbook documentation</a>
+        </li>
+
+        <li class="divider"></li>
+
+            <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="index.html"><span class="fa fa-home"></span>Getting started</a>
+            <ul class="links">
+                    <li class="link">
+                        <a 
+                            
+                             href="overview.html" 
+                             href="overview.html" 
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-th"></span>Overview
+                        </a>
+                    </li>
+                    <li class="link">
+                      <a href="index.html" data-type="chapter-link"><span class="fa fa-file-text-o"></span>README</a>
+                    </li>
+                    <li class="link">
+                        <a href="dependencies.html"
+                            data-type="chapter-link">
+                            <span class="fa fa-fw fa-list"></span>Dependencies
+                        </a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter modules">
+            <a data-type="chapter-link" href="modules.html">
+                <div class="menu-toggler linked" data-toggle="collapse"
+                        data-target="#modules-links"
+                >
+                    <span class="fa fa-fw fa-archive"></span>
+                    <span class="link-name">Modules</span>
+                    <span class="fa fa-angle-down"></span>
+                </div>
+            </a>
+            <ul class="links collapse"
+                    id="modules-links"
+>
+                    <li class="link">
+                        <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#components-links-module-AppModule-722194338c884559b606f271a37f5805"
+>
+                                    <span class="fa fa-fw fa-cogs"></span>
+                                    <span>Components</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="components-links-module-AppModule-722194338c884559b606f271a37f5805"
+>
+                                        <li class="link">
+                                            <a href="components/AddLogEntryComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AddLogEntryComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/HomeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">HomeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/LogEntriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">LogEntriesComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/PageNotFoundComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">PageNotFoundComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/SidebarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">SidebarComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                        data-target="#injectables-links-module-AppModule-722194338c884559b606f271a37f5805"
+>
+                                    <span class="fa fa-fw fa-long-arrow-down"></span>
+                                    <span>Injectables</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                        id="injectables-links-module-AppModule-722194338c884559b606f271a37f5805"
+>
+                                        <li class="link">
+                                            <a href="injectables/DataService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>DataService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/LogEntriesService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules"}>LogEntriesService</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+            </ul>
+        </li>
+
+
+
+
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                            data-target="#injectables-links"
+>
+                        <span class="fa fa-fw fa-long-arrow-down"></span>
+                        <span>Injectables</span>
+                        <span class="fa fa-angle-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                            id="injectables-links"
+>
+                            <li class="link">
+                                <a href="injectables/DataService.html" data-type="entity-link">DataService</a>
+                            </li>
+                            <li class="link">
+                                <a href="injectables/LogEntriesService.html" data-type="entity-link">LogEntriesService</a>
+                            </li>
+                    </ul>
+                </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#interfaces-links"
+>
+                <span class="fa fa-fw fa-info"></span>
+                <span>Interfaces</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="interfaces-links"
+>
+                    <li class="link">
+                        <a href="interfaces/IContext.html" data-type="entity-link">IContext</a>
+                    </li>
+                    <li class="link">
+                        <a href="interfaces/LogEntry.html" data-type="entity-link">LogEntry</a>
+                    </li>
+            </ul>
+        </li>
+
+
+        <li class="chapter">
+            <div class="simple menu-toggler" data-toggle="collapse"
+                    data-target="#miscellaneous-links"
+>
+                <span class="fa fa-fw fa-cubes"></span>
+                <span>Miscellaneous</span>
+                <span class="fa fa-angle-down"></span>
+            </div>
+            <ul class="links collapse"
+                    id="miscellaneous-links"
+>
+                    <li class="link">
+                      <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
+                    </li>
+            </ul>
+        </li>
+
+            <li class="chapter">
+                <a data-type="chapter-link" href="routes.html"><span class="fa fa-fw fa-code-fork"></span>Routes</a>
+            </li>
+
+        <li class="chapter">
+            <a data-type="chapter-link" href="coverage.html"><span class="fa fa-fw fa-tasks"></span>Documentation coverage</a>
+        </li>
+
+        <li class="divider"></li>
+        <li class="copyright">
+                Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                            <img data-src="images/compodoc-vectorise.svg" class="img-responsive" data-type="compodoc-logo">
+                </a>
+        </li>
+
+    </ul>
+
+</nav>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content overview">
+                   <div class="content-data">
+
+
+<ol class="breadcrumb">
+    <li>Overview</li>
+</ol>
+            <div class="text-center module-graph-container">
+                <div id="module-graph-svg">
+                    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="1283pt" height="284pt"
+ viewBox="0.00 0.00 1283.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-280 1279,-280 1279,4 -4,4"/>
+<text text-anchor="start" x="616.5091" y="-42.4" font-family="sans-serif" font-weight="bold" font-size="14.00" fill="#000000">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="403.5,-10 403.5,-30 423.5,-30 423.5,-10 403.5,-10"/>
+<text text-anchor="start" x="427.129" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="516.5,-10 516.5,-30 536.5,-30 536.5,-10 516.5,-10"/>
+<text text-anchor="start" x="540.2251" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="602.5,-10 602.5,-30 622.5,-30 622.5,-10 602.5,-10"/>
+<text text-anchor="start" x="626.2812" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="699.5,-10 699.5,-30 719.5,-30 719.5,-10 699.5,-10"/>
+<text text-anchor="start" x="723.1732" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="795.5,-10 795.5,-30 815.5,-30 815.5,-10 795.5,-10"/>
+<text text-anchor="start" x="819.2258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_AppModule</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="8,-70 8,-268 1267,-268 1267,-70 8,-70"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_AppModule_declarations</title>
+<polygon fill="none" stroke="#000000" points="340,-78 340,-130 1259,-130 1259,-78 340,-78"/>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster_AppModule_bootstrap</title>
+<polygon fill="none" stroke="#000000" points="597,-208 597,-260 721,-260 721,-208 597,-208"/>
+</g>
+<g id="clust12" class="cluster">
+<title>cluster_AppModule_providers</title>
+<polygon fill="none" stroke="#000000" points="16,-78 16,-130 332,-130 332,-78 16,-78"/>
+</g>
+<!-- AddLogEntryComponent -->
+<g id="node1" class="node">
+<title>AddLogEntryComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="1250.5954,-122 1091.4046,-122 1091.4046,-86 1250.5954,-86 1250.5954,-122"/>
+<text text-anchor="middle" x="1171" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">AddLogEntryComponent</text>
+</g>
+<!-- AppModule -->
+<g id="node7" class="node">
+<title>AppModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="700.6571,-187 697.6571,-191 676.6571,-191 673.6571,-187 617.3429,-187 617.3429,-151 700.6571,-151 700.6571,-187"/>
+<text text-anchor="middle" x="659" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppModule</text>
+</g>
+<!-- AddLogEntryComponent&#45;&gt;AppModule -->
+<g id="edge1" class="edge">
+<title>AddLogEntryComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M1171,-122.2921C1171,-144.2057 1171,-178 1171,-178 1171,-178 710.8991,-178 710.8991,-178"/>
+<polygon fill="#000000" stroke="#000000" points="710.8991,-174.5001 700.8991,-178 710.8991,-181.5001 710.8991,-174.5001"/>
+</g>
+<!-- AppComponent -->
+<g id="node2" class="node">
+<title>AppComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="1073.9399,-122 968.0601,-122 968.0601,-86 1073.9399,-86 1073.9399,-122"/>
+<text text-anchor="middle" x="1021" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent</text>
+</g>
+<!-- AppComponent&#45;&gt;AppModule -->
+<g id="edge2" class="edge">
+<title>AppComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M1021,-122.1061C1021,-141.3391 1021,-169 1021,-169 1021,-169 710.8796,-169 710.8796,-169"/>
+<polygon fill="#000000" stroke="#000000" points="710.8797,-165.5001 700.8796,-169 710.8796,-172.5001 710.8797,-165.5001"/>
+</g>
+<!-- HomeComponent -->
+<g id="node3" class="node">
+<title>HomeComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="950.5451,-122 835.4549,-122 835.4549,-86 950.5451,-86 950.5451,-122"/>
+<text text-anchor="middle" x="893" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">HomeComponent</text>
+</g>
+<!-- HomeComponent&#45;&gt;AppModule -->
+<g id="edge3" class="edge">
+<title>HomeComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M893,-122.027C893,-138.3976 893,-160 893,-160 893,-160 710.8345,-160 710.8345,-160"/>
+<polygon fill="#000000" stroke="#000000" points="710.8345,-156.5001 700.8345,-160 710.8345,-163.5001 710.8345,-156.5001"/>
+</g>
+<!-- LogEntriesComponent -->
+<g id="node4" class="node">
+<title>LogEntriesComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="816.5393,-122 673.4607,-122 673.4607,-86 816.5393,-86 816.5393,-122"/>
+<text text-anchor="middle" x="745" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LogEntriesComponent</text>
+</g>
+<!-- LogEntriesComponent&#45;&gt;AppModule -->
+<g id="edge4" class="edge">
+<title>LogEntriesComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M687.0295,-122.1061C687.0295,-122.1061 687.0295,-140.991 687.0295,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="683.5295,-140.9909 687.0295,-150.991 690.5295,-140.991 683.5295,-140.9909"/>
+</g>
+<!-- PageNotFoundComponent -->
+<g id="node5" class="node">
+<title>PageNotFoundComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="655.8243,-122 490.1757,-122 490.1757,-86 655.8243,-86 655.8243,-122"/>
+<text text-anchor="middle" x="573" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">PageNotFoundComponent</text>
+</g>
+<!-- PageNotFoundComponent&#45;&gt;AppModule -->
+<g id="edge5" class="edge">
+<title>PageNotFoundComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M636.4169,-122.1061C636.4169,-122.1061 636.4169,-140.991 636.4169,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="632.917,-140.9909 636.4169,-150.991 639.917,-140.991 632.917,-140.9909"/>
+</g>
+<!-- SidebarComponent -->
+<g id="node6" class="node">
+<title>SidebarComponent</title>
+<polygon fill="#ffffb3" stroke="#000000" points="472.0954,-122 347.9046,-122 347.9046,-86 472.0954,-86 472.0954,-122"/>
+<text text-anchor="middle" x="410" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">SidebarComponent</text>
+</g>
+<!-- SidebarComponent&#45;&gt;AppModule -->
+<g id="edge6" class="edge">
+<title>SidebarComponent&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M410,-122.027C410,-138.3976 410,-160 410,-160 410,-160 607.323,-160 607.323,-160"/>
+<polygon fill="#000000" stroke="#000000" points="607.323,-163.5001 617.323,-160 607.323,-156.5001 607.323,-163.5001"/>
+</g>
+<!-- AppComponent  -->
+<g id="node8" class="node">
+<title>AppComponent </title>
+<polygon fill="#80b1d3" stroke="#000000" points="713.439,-252 604.561,-252 604.561,-216 713.439,-216 713.439,-252"/>
+<text text-anchor="middle" x="659" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">AppComponent </text>
+</g>
+<!-- AppModule&#45;&gt;AppComponent  -->
+<g id="edge7" class="edge">
+<title>AppModule&#45;&gt;AppComponent </title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M659,-187.1061C659,-187.1061 659,-205.991 659,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="655.5001,-205.9909 659,-215.991 662.5001,-205.991 655.5001,-205.9909"/>
+</g>
+<!-- DataService -->
+<g id="node9" class="node">
+<title>DataService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="266" cy="-104" rx="58.4415" ry="18"/>
+<text text-anchor="middle" x="266" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">DataService</text>
+</g>
+<!-- DataService&#45;&gt;AppModule -->
+<g id="edge8" class="edge">
+<title>DataService&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M266,-122.1061C266,-141.3391 266,-169 266,-169 266,-169 607.3142,-169 607.3142,-169"/>
+<polygon fill="#000000" stroke="#000000" points="607.3142,-172.5001 617.3142,-169 607.3141,-165.5001 607.3142,-172.5001"/>
+</g>
+<!-- LogEntriesService -->
+<g id="node10" class="node">
+<title>LogEntriesService</title>
+<ellipse fill="#fdb462" stroke="#000000" cx="107" cy="-104" rx="82.8013" ry="18"/>
+<text text-anchor="middle" x="107" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LogEntriesService</text>
+</g>
+<!-- LogEntriesService&#45;&gt;AppModule -->
+<g id="edge9" class="edge">
+<title>LogEntriesService&#45;&gt;AppModule</title>
+<path fill="none" stroke="#000000" d="M107,-122.2921C107,-144.2057 107,-178 107,-178 107,-178 607.0572,-178 607.0572,-178"/>
+<polygon fill="#000000" stroke="#000000" points="607.0572,-181.5001 617.0572,-178 607.0572,-174.5001 607.0572,-181.5001"/>
+</g>
+</g>
+</svg>
+
+                </div>
+                <i id="fullscreen" class="fa fa-expand module-graph-fullscreen-btn" aria-hidden="true"></i>
+                <div class="btn-group">
+                    <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+                    <button id="reset" class="btn btn-default btn-sm">Reset</button>
+                    <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+                </div>
+            </div>
+<div class="container-fluid overview">
+    <div class="row">
+            <div class="col-sm-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title"><span class="fa fa-archive"></span></h4>
+                        <p class="card-text">
+                            <a href="./modules.html">1 module</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title"><span class="fa fa-cogs"></span></h4>
+                        <p class="card-text">6 components</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title"><span class="fa fa-code-fork"></span></h4>
+                        <p class="card-text">2 injectables</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title"><span class="fa fa-info"></span></h4>
+                        <p class="card-text">2 interfaces</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title"><span class="fa fa-code-fork"></span></h4>
+                        <p class="card-text">
+                            <a href="./routes.html">0 routes</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script src="js/libs/svg-pan-zoom.min.js"></script>
+<script src="js/svg-pan-zoom.controls.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+        <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'overview';
+            var COMPODOC_CURRENT_PAGE_URL = 'overview.html';
+        </script>
+
+       <script src="./js/search/search.js"></script>
+       <script src="./js/search/lunr.min.js"></script>
+       <script src="./js/search/search-lunr.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+       <script src="./js/search/search_index.js"></script>
+
+
+    </body>
+</html>
