@@ -49,20 +49,16 @@ export class AddLogEntryComponent implements OnInit {
             'id': 4
         },
         {
-            'label': 'GENERAL',
+            'label': 'General',
             'id': 5
         },
         {
-            'label': 'EOS',
+            'label': 'Hardware',
             'id': 6
         },
         {
-            'label': 'HARDWARE',
+            'label': 'Software',
             'id': 7
-        },
-        {
-            'label': 'SOFTWARE',
-            'id': 8
         }
     ];
 

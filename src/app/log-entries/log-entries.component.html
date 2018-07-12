@@ -31,15 +31,15 @@
                     Author
                 </th>
                 <th style="text-align: center;">
-                    <i (click)="filterLogEntries('Title', 'title')" class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Title', 'title')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('title')}"></i><br/>
                     Title
                 </th>
                 <th *ngIf="mode === 'Extended'" style="text-align: center;">
-                    <i (click)="filterLogEntries('Log entry', 'log_entry_text')" class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Log entry', 'log_entry_text')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('log_entry_text')}"></i><br/>
                     Log entry
                 </th>
                 <th style="text-align: center;">
-                    <i (click)="filterLogEntries('Followups', 'followups')" class="filter icon"></i><br/>
+                    <i (click)="filterLogEntries('Followups', 'follow_ups')" class="filter icon" [ngClass]="{'orange-icon': isFilterApplied('follow_ups')}"></i><br/>
                     Followups
                 </th>
                 <th style="text-align: center;">
@@ -48,7 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let logEntry of logEntries | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr *ngFor="let logEntry of filteredLogEntries | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
                     {{logEntry.run_id}}
                 </td>
@@ -186,7 +186,7 @@
         </table>
     </div>
     <div class="actions">
-        <button class="ui button" (click)="modal.approve('approved')">
+        <button [routerLink]="['/add-log-entry']" class="ui button" (click)="modal.approve('approved')">
             <i class="plus icon mr-5"></i>
             Create a followup
         </button>
@@ -207,10 +207,27 @@
             -->
 
             <!-- String field -->
-            <div *ngIf="['Class', 'Type', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(selectedFilterName) >= 0"
+            <div *ngIf="['Class', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(selectedFilterName) >= 0"
                  class="field">
                 <label>Field must include</label>
                 <input name="queryInput" [(ngModel)]="filterQuery" placeholder="Query">
+            </div>
+
+            <!-- Type field -->
+            <div *ngIf="['Type'].indexOf(selectedFilterName) >= 0" class="field">
+                <label>Type(s)</label>
+                <sui-multi-select class="selection"
+                                  name="subsystemsSelect"
+                                  [(ngModel)]="filterTypes"
+                                  [options]="typeOptions"
+                                  labelField="label"
+                                  placeholder="Search..."
+                                  [isSearchable]="true"
+                                  #multiSelectType>
+                    <sui-select-option *ngFor="let option of multiSelectType.filteredOptions"
+                                       [value]="option">
+                    </sui-select-option>
+                </sui-multi-select>
             </div>
 
             <!-- Subsystem field -->

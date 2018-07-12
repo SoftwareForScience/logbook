@@ -3,6 +3,7 @@ import {DataService} from '../shared/services/data/data.service';
 import {LogEntriesService} from '../shared/services/log-entries/log-entries.service';
 import {LogEntry} from '../shared/services/log-entries/get-all-log-entries-return';
 import {ModalTemplate, SuiModalService, TemplateModalConfig} from 'ng2-semantic-ui';
+import {current} from 'codelyzer/util/syntaxKind';
 
 @Component({
     selector: 'app-log-entries',
@@ -17,6 +18,7 @@ export class LogEntriesComponent implements OnInit {
     public filterModalTemplate: ModalTemplate<IContext, string, string>;
     p = 1;
     logEntries: LogEntry[] = [];
+    filteredLogEntries: LogEntry[] = [];
     selectedLogEntry: LogEntry;
     selectedFilterName: string;
     selectedFilterField: string;
@@ -31,6 +33,7 @@ export class LogEntriesComponent implements OnInit {
     filterMaxValue;
     filterMinDateValue;
     filterMaxDateValue;
+    filterTypes;
     filterSubsystems;
 
     subsystemOptions = [
@@ -56,6 +59,37 @@ export class LogEntriesComponent implements OnInit {
         }
     ];
 
+    typeOptions = [
+        {
+            'label': 'CAVERN',
+            'id': 1
+        },
+        {
+            'label': 'DCS',
+            'id': 2
+        },
+        {
+            'label': 'DQL/QA',
+            'id': 3
+        },
+        {
+            'label': 'EOS',
+            'id': 4
+        },
+        {
+            'label': 'General',
+            'id': 5
+        },
+        {
+            'label': 'Hardware',
+            'id': 6
+        },
+        {
+            'label': 'Software',
+            'id': 7
+        }
+    ];
+
     constructor(private dataService: DataService,
                 public modalService: SuiModalService,
                 private logEntriesService: LogEntriesService) {
@@ -67,6 +101,7 @@ export class LogEntriesComponent implements OnInit {
     ngOnInit() {
         this.logEntriesService.getAllLogEntries().then(logEntriesArray => {
             this.logEntries = logEntriesArray;
+            this.filteredLogEntries = this.logEntries;
             this.loading = false;
         });
     }
@@ -100,9 +135,9 @@ export class LogEntriesComponent implements OnInit {
 
     public previousLogEntry() {
         if (!this.isPreviousLogEntryButtonDisabled) {
-            for (let i = 0; i < this.logEntries.length; i++) {
-                if (this.logEntries[i].run_id === this.selectedLogEntry.run_id) {
-                    this.selectedLogEntry = this.logEntries[i - 1];
+            for (let i = 0; i < this.filteredLogEntries.length; i++) {
+                if (this.filteredLogEntries[i].run_id === this.selectedLogEntry.run_id) {
+                    this.selectedLogEntry = this.filteredLogEntries[i - 1];
                     break;
                 }
             }
@@ -114,11 +149,11 @@ export class LogEntriesComponent implements OnInit {
         this.isPreviousLogEntryButtonDisabled = false;
         this.isNextLogEntryButtonDisabled = false;
 
-        for (let i = 1; i <= this.logEntries.length; i++) {
-            if (this.logEntries[i - 1].run_id === this.selectedLogEntry.run_id) {
+        for (let i = 1; i <= this.filteredLogEntries.length; i++) {
+            if (this.filteredLogEntries[i - 1].run_id === this.selectedLogEntry.run_id) {
                 if (i === 1) {
                     this.isPreviousLogEntryButtonDisabled = true;
-                } else if (i === this.logEntries.length) {
+                } else if (i === this.filteredLogEntries.length) {
                     this.isNextLogEntryButtonDisabled = true;
                 }
                 break;
@@ -147,13 +182,17 @@ export class LogEntriesComponent implements OnInit {
                 'minimum': this.filterMinValue,
                 'maximum': this.filterMaxValue
             };
-        } else if (['Class', 'Type', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(this.selectedFilterName) >= 0) {
+        } else if (['Class', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(this.selectedFilterName) >= 0) {
             data = {
                 'query': this.filterQuery
             };
         } else if (['Subsystem(s)'].indexOf(this.selectedFilterName) >= 0) {
             data = {
                 'subsystems': this.filterSubsystems
+            };
+        } else if (['Type'].indexOf(this.selectedFilterName) >= 0) {
+            data = {
+                'types': this.filterTypes
             };
         } else {
             data = {
@@ -164,13 +203,12 @@ export class LogEntriesComponent implements OnInit {
 
         const newFilter = {
             'field': this.selectedFilterField,
+            'filterName': this.selectedFilterName,
             'data': data
         };
 
         this.appliedFilters.push(newFilter);
         this.applyAllFilters();
-
-        console.log(this.appliedFilters);
     }
 
     public removeFilter() {
@@ -183,10 +221,90 @@ export class LogEntriesComponent implements OnInit {
         }
 
         this.appliedFilters = newAppliedFilters;
+        this.applyAllFilters();
     }
 
     public applyAllFilters() {
-        // todo
+        let filteredLogEntries: LogEntry[] = this.logEntries;
+
+        for (let i = 0; i < this.appliedFilters.length; i++) {
+            const newFilteredLogEntries: LogEntry[] = [];
+            const currentFilter = this.appliedFilters[i];
+
+            if (['Id'].indexOf(currentFilter.filterName) >= 0) {
+                for (let j = 0; j < filteredLogEntries.length; j++) {
+                    const currentLogEntry = filteredLogEntries[j];
+                    if (currentFilter.data.minimum) {
+                        if (currentFilter.data.maximum) {
+                            if (currentLogEntry.run_id <= currentFilter.data.maximum &&
+                                currentLogEntry.run_id >= currentFilter.data.minimum) {
+                                newFilteredLogEntries.push(currentLogEntry);
+                            }
+                        } else {
+                            if (currentLogEntry.run_id >= currentFilter.data.minimum) {
+                                newFilteredLogEntries.push(currentLogEntry);
+                            }
+                        }
+                    } else if (currentFilter.data.maximum) {
+                        if (currentLogEntry.run_id <= currentFilter.data.maximum) {
+                            newFilteredLogEntries.push(currentLogEntry);
+                        }
+                    } else {
+                        newFilteredLogEntries.push(currentLogEntry);
+                    }
+                }
+            } else if (['Class', 'Author', 'Run', 'Title', 'Log entry', 'Followups'].indexOf(currentFilter.filterName) >= 0) {
+                for (let j = 0; j < filteredLogEntries.length; j++) {
+                    const currentLogEntry = filteredLogEntries[j];
+
+                    if (currentLogEntry[currentFilter.field].toLowerCase().includes(currentFilter.data.query.toLowerCase())) {
+                        newFilteredLogEntries.push(currentLogEntry);
+                    }
+                }
+            } else if (['Type'].indexOf(currentFilter.filterName) >= 0) {
+                for (let j = 0; j < filteredLogEntries.length; j++) {
+                    const currentLogEntry = filteredLogEntries[j];
+                    let found = false;
+
+                    for (let x = 0; x < this.filterTypes.length; x++) {
+                        const currentType = this.filterTypes[x];
+
+                        if (currentLogEntry.type.toLowerCase().includes(currentType.label.toLowerCase())) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        newFilteredLogEntries.push(currentLogEntry);
+                    }
+                }
+            } else if (['Subsystem(s)'].indexOf(currentFilter.filterName) >= 0) {
+                for (let j = 0; j < filteredLogEntries.length; j++) {
+                    const currentLogEntry = filteredLogEntries[j];
+                    let found = false;
+
+                    for (let x = 0; x < this.filterSubsystems.length; x++) {
+                        const currentSubsystem = this.filterSubsystems[x];
+
+                        if (currentLogEntry.subsystem.toLowerCase().includes(currentSubsystem.label.toLowerCase())) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        newFilteredLogEntries.push(currentLogEntry);
+                    }
+                }
+            } else {
+                // todo date
+            }
+
+            filteredLogEntries = newFilteredLogEntries;
+        }
+
+        this.filteredLogEntries = filteredLogEntries;
     }
 
     public isFilterApplied(filterField): boolean {
