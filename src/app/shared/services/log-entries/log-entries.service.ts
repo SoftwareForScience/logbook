@@ -70,20 +70,16 @@ export class LogEntriesService {
      */
     getAllLogEntries(): Promise<LogEntry[]> {
         return new Promise((resolve, reject) => {
-            resolve(logEntries);
-        });
-        /*
-        return new Promise((resolve, reject) => {
             this.http.get(environment.api_base_url + 'api/all/entries', {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
             })
                 .subscribe((res: LogEntry[]) => {
+                    res.reverse();
                     resolve(res);
                 }, err => {
                     reject(err);
                 });
         });
-        */
     }
 
     /**
@@ -92,6 +88,7 @@ export class LogEntriesService {
      * @returns {Promise<any>}
      */
     crateLogEntry(APIParameter): Promise<any> {
+        console.log(APIParameter);
         return new Promise((resolve, reject) => {
             this.http.post(environment.api_base_url + 'api/post/entry/data', APIParameter, {
                 headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
